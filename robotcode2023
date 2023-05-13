@@ -1,0 +1,66 @@
+int sval = 0;
+int counter = 0;
+int main()
+{
+    motor(0,50);
+    motor(3,50);
+    msleep(1700);
+    while (digital(3) == 0)
+    {
+        if(digital(0) == 0 && sval == 0) {
+            if (sval == 0) {
+            if (analog(0) > 2000)
+            {
+                motor(0,90);
+                motor(3,90);
+            }
+            else
+            {
+                motor(0, -20);
+                motor(3, 10);
+                msleep(100);
+            }
+            }
+        } else {
+        if (sval == 0) {
+            //printf("Done!");
+            ao();
+            msleep(1000);
+            motor(0,20);
+            motor(3,20);
+            msleep(500);
+            motor(3,50);
+            motor(0,-50);
+            msleep(2700);
+            return 0;
+        }
+        sval = 1;
+        //if ( analog(2) < 2500 && analog(2) > 1800) {
+        // ao();
+         //   msleep(100);
+        //}
+                    counter = counter + 1;
+        if (analog(2) > 1800 && analog(2) < 2500 && counter > 100000) {
+            ao();
+            msleep(20000);
+            motor(0,70);
+            motor(3,-70);
+            msleep(1800);
+            motor(0,50);
+            motor(3,50);
+            msleep(1000);
+        }
+        if(analog(0) > 2000)
+        {
+            motor(0,70);
+            motor(3,70);
+        }
+        else
+        {
+            motor(0,-20);
+            motor(3, 10);
+            msleep(100);
+        }
+    }
+    }
+    ao();
